@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2 class='d-flex justify-content-center my-3 font-weight-bold'>상세조회</h2>
+<p>제목: {{review.title}}</p>
+<p>영화제목: {{review.movie_title}}</p>
+<p>평점: {{review.rank}}</p>
+<p>내용: {{review.content}}</p>
+<p>작성시간: {{review.created_at}}</p>
+<p>수정시간: {{review.updated_at}}</p>
+<div class='d-flex justify-content-center'>
+    <a role='botton' class='btn btn-secondary btn-sm' href="{% url 'community:update' review.pk %}">수정</a>
+    <form action="{% url 'community:delete' review.pk %}" method="POST" class=d-inline>
+        {% csrf_token %}
+        <input class='btn btn-secondary btn-sm mx-3' type="submit" value="삭제">
+    </form>
+    <a role='botton' class='btn btn-secondary btn-sm' href="{% url 'community:index' %}">BACK</a>
+</div>
+{% endblock %}

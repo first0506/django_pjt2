@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h2 class='d-flex justify-content-center my-3 font-weight-bold'>게시판</h2>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">제목</th>
+          <th scope="col">영화제목</th>
+          <th scope="col">평점</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for review in reviews %}
+            <tr>
+              <th scope="row">{{ review.pk }}번</th>
+              <td><a class='text-decoration-none text-secondary' href="{% url 'community:detail' review.pk %}">{{ review.title }}</a></td>
+              <td>{{ review.movie_title }}</td>
+              <td>{{ review.rank }}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a class='btn btn-secondary vw-10 btn-sm d-flex justify-content-center my-3' href="{% url 'community:create' %}" role='botton'>글쓰기</a>
+{% endblock %}
